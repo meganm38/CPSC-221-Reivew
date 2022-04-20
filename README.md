@@ -5,7 +5,6 @@
 - [Asymptotic Analysis](#asymptotic-analysis)
 - [Correctness](#correctness)
 - [Data Structures](#data-structures)
-  - [Array](#array)
   - [Linked List](#linked-list)
   - [Hash Table or Hash Map](#hash)
   - [Binary Tree](#binary-tree)
@@ -200,27 +199,6 @@ void putInPlace(vector<int> & arr, int i) {
 
 
 # <a id="data-structures"></a>Data Structures
-### <a id="array"></a> Array
-#### Definition
-- Stores data elements based on an sequential, most commonly 0 based, index.
-- Based on [tuples](http://en.wikipedia.org/wiki/Tuple) from set theory.
-- They are one of the oldest, most commonly used data structures.
-
-#### What you need to know
-- Optimal for indexing; bad at searching, inserting, and deleting (except at the end).
-- **Linear arrays**, or one dimensional arrays, are the most basic.
-  - Are static in size, meaning that they are declared with a fixed size.
-- **Dynamic arrays** are like one dimensional arrays, but have reserved space for additional elements.
-  - If a dynamic array is full, it copies its contents to a larger array.
-- **Multi dimensional arrays** nested arrays that allow for multiple dimensions such as an array of arrays providing a 2 dimensional spacial representation via x, y coordinates.
-
-#### Time Complexity
-- Indexing:         Linear array: `O(1)`,      Dynamic array: `O(1)`
-- Search:           Linear array: `O(n)`,      Dynamic array: `O(n)`
-- Optimized Search: Linear array: `O(log n)`,  Dynamic array: `O(log n)`
-- Insertion:        Linear array: n/a,         Dynamic array: `O(n)`
-
-
 ### <a id="linked-list"></a> Linked List
 #### Definition
 - Stores data with **nodes** that point to other nodes.
