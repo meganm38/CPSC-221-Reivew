@@ -247,6 +247,49 @@ head->next = new Node(3, null);
 - **Stack**, commonly implemented with linked lists but can be made from arrays too.
   - Stacks are **last in, first out** (LIFO) data structures.
   - Made with a linked list by having the head be the only place for insertion and removal.
+  ```c++
+  class Stack {
+      Stack();
+      bool empty() const;
+      void push(const int integer);
+      int pop();
+      
+      private:
+        struct Node{
+          int data;
+          Node* next;
+        };
+        Node* top;
+  };
+  ```
+  
+   ```c++
+  void Stack::push(int integer) {
+      Node* node = new Node(integer);
+      node.next = top;
+      top = node;
+      }
+  }
+  
+  int Stack::pop() {
+      assert(!empty());
+      int result = top->data;
+      Node* newTop = top->next;
+      delete top;
+      top = newTop;
+      return result;
+  }
+  
+  bool Stack::empty() {
+      return top == nullptr;
+  }
+  
+  void ~Stack() {
+      while (!empty()) {
+          pop();
+      }
+  }
+  ```
 - **Queues**, too can be implemented with a linked list or an array.
   - Queues are a **first in, first out** (FIFO) data structure.
   - Made with a doubly linked list that only removes from head and adds to tail.
@@ -312,6 +355,12 @@ head->next = new Node(3, null);
         return result;
     }
     ```
+
+#### Stack operations
+- push
+- pop
+- top
+- is_empty
 
 ### <a id="hash"></a> Hash Table or Hash Map
 #### Definition
