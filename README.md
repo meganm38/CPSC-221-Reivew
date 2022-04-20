@@ -1,5 +1,5 @@
 
-# CPSC221 Review
+# UBC CPSC 221 Basic Algorithms and Data Structures: Review
 
 # Table of Content
 - [Asymptotic Analysis](#asymptotic-analysis)
@@ -264,6 +264,7 @@ head->next = new Node(3, null);
         b = nullptr;
         ```
 - **Doubly linked list** has nodes that also reference the previous node.
+- **Sentinel linked lists** Sentinel node is a special node that doesn't count as content at the front of the list. Reduces special cases.
 - **Circularly linked list** is simple linked list whose **tail**, the last node, references the **head**, the first node.
 - **Stack**, commonly implemented with linked lists but can be made from arrays too.
   - Stacks are **last in, first out** (LIFO) data structures.
@@ -280,8 +281,22 @@ head->next = new Node(3, null);
 - Deletion at front: `O(1)`
 - Deletion at back: `O(n)`
 
-#### Linked Lists Manipulation
-- Print in reverse order (odd locations only)
+#### Linked Lists Manipulation ``O(n)``
+- Insert at back iteratively ``O(n)``
+    ```c++
+    void insertAtBack(Node*& head, int new) {
+        if (head == nullptr) {
+            head = new Node(new, nullptr);
+            return;
+        }
+        Node* curr = head;
+        while(curr->next != nullptr) {
+            curr = curr->next;
+        }
+        curr->next = new Node(new, nullptr);
+    }
+    ``` 
+- Print in reverse order recursivly(odd locations only) ``O(n)``
     ```c++
     void printReverseOdds(Node* curr) {
         if (curr == nullptr) {
@@ -290,6 +305,33 @@ head->next = new Node(3, null);
         if (curr->next != nullptr) {
             printReverseOdds(curr->next->next);
         }
+        cout << curr->data << endl;
+    }
+    ``` 
+- Reverse the list recursivly without copying``O(n)``
+   ```c++
+    Node* reverse(Node* curr) {
+        if (curr == nullptr || curr->next == nullptr) {
+            return curr;
+        }
+        Node* result = reverse(curr->next);
+        curr->next->next = curr;
+        curr->next = nullptr;
+        return result;
+    }
+    ```
+- Reverse doubly linked list iteratively ``O(n)``
+   ```c++
+    Node* reverse(Node* curr) {
+        Node* result = nullptr;
+        while (curr != nullptr) {
+            Node* nextNode = curr->next;
+            curr->next = curr->prev;
+            curr->prev = nextNode;
+            result = curr;
+            curr = curr->prev;
+        }
+        return result;
     }
     ```
 
