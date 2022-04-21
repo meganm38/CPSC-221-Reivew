@@ -389,12 +389,65 @@ Made with a singly linked list that has head and tail pointers. Dequeue from hea
 ```c++
   void Queue::enqueue(int integer) {
       Node* node = new Node(integer);
-      if (
+      if (empty()) {
+          front = back = node;
+      } else {
+          back->next = node;
+          back = node;
+      }
   }
 ```
 
+```c++
+  void int Queue::dequeue() {
+      assert(!empty());
+      int value = front->data;
+      Node* temp = front->next;
+      delete front;
+      front = temp;
+      return value;
+  }
+```
+#### Array based implementation ``O(1) push (average per push) and pop``
+Use a circular array and resize array if is full.
 
+```c++
+class Queue {
+  public：
+      Queue();
+      bool empty();
+      void enqueue (const int integer)
+      int dequeue();
+    
+  private:
+      int size; //capacity of queue
+      int front, back;
+      void resize();
+      bool full() const;     
+      int* Q;
+};
+```
 
+```c++
+  void Queue::enqueue(int integer) {
+      if(full) {
+        resize();
+      }
+      Q[back] = integer;
+      back++;
+      back = back % size;
+  }
+```
+
+```c++
+   void int dequeue() {
+      assert(!empty());
+      int value = Q[front];
+      front ++;
+      front = front % size;
+      return value;
+   }
+```
 
 ### <a id="hash"></a> Hash Table or Hash Map
 #### Definition
