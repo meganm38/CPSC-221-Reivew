@@ -6,6 +6,8 @@
 - [Correctness](#correctness)
 - [Data Structures](#data-structures)
   - [Linked List](#linked-list)
+  - [Stack](#stack)
+  - [Queue](#queue)
   - [Hash Table or Hash Map](#hash)
   - [Binary Tree](#binary-tree)
 - [Algorithms](#algorithms)
@@ -326,7 +328,7 @@ Have the head be the only place for insertion and removal.
           Node* next;
         };
         Node* top;
-  };
+  }
   ```
   
    ```c++
