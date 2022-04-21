@@ -62,6 +62,11 @@ If <img src="https://render.githubusercontent.com/render/math?math=\lim_{n \to \
 
 
 ## <a id="sorting-algorithms"></a>Sorting Algorithms
+- There are ``n!`` possible orderings of an input array of size n.
+- There must be a leaf for each possible ordering, ``2^i = n!``
+- The height of the tree is at least ``lg(n!)``
+- Any comparsion based sorting algorithms must make at least ``lg(n!)`` comparisions in the worst case.
+- Thus, the complexity of the sorting problem is ``Omega(nlg(n))``
 
 ### <a id="selection-sort"></a>Selection Sort
 #### Definition
@@ -180,32 +185,6 @@ void putInPlace(vector<int> & arr, int i) {
 
 #### Visualization
 ![#](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Merge_sort_algorithm_diagram.svg/400px-Merge_sort_algorithm_diagram.svg.png)
-
-
-### <a id="quick-sort"></a>Quicksort
-#### Definition
-- A divide and conquer algorithm
-  - Partitions entire data set in half by selecting a random pivot element and putting all smaller elements to the left of the element and larger ones to the right.
-  - It repeats this process on the left side until it is comparing only two elements at which point the left side is sorted.
-  - When the left side is finished sorting it performs the same operation on the right side.
-- Computer architecture favors the quicksort process.
-- Changes the array in place.
-
-#### What you need to know
-- While it has the same Big O as (or worse in some cases) many other sorting algorithms it is often faster in practice than many other sorting algorithms, such as merge sort.
-
-#### Time Complexity
-- Worst Case: `O(n^2)`
-- Average Case: `O(n log n)`
-- Best Case: `O(n log n)`
-
-#### Visualization
-![#](https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif)
-
-#### Merge Sort Vs. Quicksort
-- Quicksort is likely faster in practice, but merge sort is faster on paper.
-- Merge Sort divides the set into the smallest possible groups immediately then reconstructs the incrementally as it sorts the groupings.
-- Quicksort continually partitions the data set by a pivot, until the set is recursively sorted.
 
 
 # <a id="data-structures"></a>Data Structures
