@@ -155,9 +155,20 @@ void putInPlace(vector<int> & arr, int i) {
   - Once the base case is reached results are returned and sorted ascending left to right.
   - Recursive calls are returned and the sorts double in size until the entire array is sorted.
 
-#### What you need to know
-- This is one of the fundamental sorting algorithms.
-- Know that it divides all the data into as small possible sets then compares them.
+#### Code
+```c++
+    void mergesort(vector<int> & A) {
+        mergesort(A, 0, A.size() - 1);
+    }
+    
+    void mergesort(vector<int> &A, int lo, int hi) {
+        if (lo >= hi) return;
+        int mid = (lo + hi) / 2;
+        mergesort(A, lo, mid);
+        mergesort(A, mid + 1, hi);
+        merge(A, low, mid, hi);
+    }
+```
 
 #### Time Complexity
 - Worst Case: `O(n log n)`
@@ -187,9 +198,6 @@ void putInPlace(vector<int> & arr, int i) {
 - Worst Case: `O(n^2)`
 - Average Case: `O(n log n)`
 - Best Case: `O(n log n)`
-
-#### Space Complexity
-- Worst Case: `O(log n)`
 
 #### Visualization
 ![#](https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif)
@@ -442,12 +450,38 @@ class Queue {
 ```
 
 ```c++
-   void int dequeue() {
+  int Queue::dequeue() {
       assert(!empty());
       int value = Q[front];
       front ++;
       front = front % size;
       return value;
+   }
+```
+```c++
+  bool full() {
+      return back = front - 1 || (front == 0 && back = size - 1);
+  } 
+```
+
+```c++
+   void Queue::resize() {
+      int* newQ = new int[size * 2];
+      if (front < back) {
+      int index = 0;
+        for (int i = front; i < back; i++) {
+            newQ[index++] = Q[i];
+        }
+       } else {
+         for (int i = front; i < size; i++）{
+            newQ[index++] = Q[i];
+         }
+         for (int i = 0; i < back; i++) {
+            newQ[index++] = Q[i];
+         }
+      }
+      delete[] Q;
+      Q = newQ;
    }
 ```
 
