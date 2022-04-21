@@ -244,55 +244,6 @@ head->next = new Node(3, null);
 - **Doubly linked list** has nodes that also reference the previous node.
 - **Sentinel linked lists** Sentinel node is a special node that doesn't count as content at the front of the list. Reduces special cases.
 - **Circularly linked list** is simple linked list whose **tail**, the last node, references the **head**, the first node.
-- **Stack**, commonly implemented with linked lists but can be made from arrays too.
-  - Stacks are **last in, first out** (LIFO) data structures.
-  - Made with a linked list by having the head be the only place for insertion and removal.
-  ```c++
-  class Stack {
-      Stack();
-      bool empty() const;
-      void push(const int integer);
-      int pop();
-      
-      private:
-        struct Node{
-          int data;
-          Node* next;
-        };
-        Node* top;
-  };
-  ```
-  
-   ```c++
-  void Stack::push(int integer) {
-      Node* node = new Node(integer);
-      node.next = top;
-      top = node;
-      }
-  }
-  
-  int Stack::pop() {
-      assert(!empty());
-      int result = top->data;
-      Node* newTop = top->next;
-      delete top;
-      top = newTop;
-      return result;
-  }
-  
-  bool Stack::empty() {
-      return top == nullptr;
-  }
-  
-  void ~Stack() {
-      while (!empty()) {
-          pop();
-      }
-  }
-  ```
-- **Queues**, too can be implemented with a linked list or an array.
-  - Queues are a **first in, first out** (FIFO) data structure.
-  - Made with a doubly linked list that only removes from head and adds to tail.
 
 #### Time Complexity for Singly Linked Lists without Tail Pointer
 - Search: `O(n)`
@@ -355,12 +306,95 @@ head->next = new Node(3, null);
         return result;
     }
     ```
+    
+### <a id="stack"></a> Stack
+#### Definition
+FILO: last in first out
 
-#### Stack operations
-- push
-- pop
-- top
-- is_empty
+#### Linked list implementation ``O(1) push and pop``
+Have the head be the only place for insertion and removal.
+  ```c++
+  class Stack {
+      Stack();
+      bool empty() const;
+      void push(const int integer);
+      int pop();
+      
+      private:
+        struct Node{
+          int data;
+          Node* next;
+        };
+        Node* top;
+  };
+  ```
+  
+   ```c++
+  void Stack::push(int integer) {
+      Node* node = new Node(integer);
+      node.next = top;
+      top = node;
+      }
+  }
+  
+  int Stack::pop() {
+      assert(!empty());
+      int result = top->data;
+      Node* newTop = top->next;
+      delete top;
+      top = newTop;
+      return result;
+  }
+  
+  bool Stack::empty() {
+      return top == nullptr;
+  }
+  
+  void ~Stack() {
+      while (!empty()) {
+          pop();
+      }
+  }
+  ```
+#### Array based implementation ``O(1) push and pop``
+Resize array: Upon insertion (push), if the array is full, create a larger space and copy the data into it.
+- Constant additions to array size: k = n/c copy events, ``O(n^2)`` operations of n pushes, ``O(n)`` operations per push.
+- Double the array size: k = lg(n) copy events, ``O(n)``operations of n pushes, ``O(1)`` operations per push.
+- Remember to deallocate old array memeory by calling delete[] array;
+
+### <a id="queue"></a> Queue
+#### Definition
+FIFO: first in first out
+Made with a singly linked list that has head and tail pointers. Dequeue from head, enqueue from tail.
+
+#### Linked list implementation ``O(1) push and pop``
+```c++
+    class Queue {
+        public:
+        Queue();
+        bool empty() const;
+        void enqueue(const int integer);
+        int dequeue();
+        
+        private:
+        struct Node {
+           int data;
+           Node* next;
+        };
+        Node* front;
+        Node* back;
+    }   
+```
+
+```c++
+  void Queue::enqueue(int integer) {
+      Node* node = new Node(integer);
+      if (
+  }
+```
+
+
+
 
 ### <a id="hash"></a> Hash Table or Hash Map
 #### Definition
