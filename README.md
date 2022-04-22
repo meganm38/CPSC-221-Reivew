@@ -8,8 +8,11 @@
   - [Linked List](#linked-list)
   - [Stack](#stack)
   - [Queue](#queue)
-  - [Hash Table or Hash Map](#hash)
   - [Binary Tree](#binary-tree)
+  - [AVL Tree](#avl)
+  - [B-Tree](#btree)
+  - [Hash Table or Hash Map](#hash)
+
 - [Algorithms](#algorithms)
     - [Sorting Algorithms](#sorting-algorithms)
         - [Selection Sort](#selection-sort)
