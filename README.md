@@ -490,15 +490,75 @@ class Queue {
   - There is one left and right child node.
 
 #### What you need to know
-- Designed to optimize searching and sorting.
-- A **degenerate tree** is an unbalanced tree, which if entirely one-sided, is essentially a linked list.
-- They are comparably simple to implement than other data structures.
+- The height of a node is the length of the longest path from v to a leaf. Count the number of edges from v to the furthest leaf from v. The height of an empty tree is ``-1``, the height of a one-node tree is 0.
+- The depth of a node v is the length of the path from v to the root.
+- A binary tree is perfect is
+  - No node has only one child.
+  - All leaves have the same depth.
+- A perfect binary tree of height h has ``2^h+1 - 1`` nodes, of which ``2^h`` are leaves.
+- A binary tree is complete if
+  - The leaves are on at most two different levels,
+  - The second to bottom level is completed filled in and
+  - The leaves on the bottom level are as faa to the left as possible. 
+- A binary tree is full if all nodes have 0 or 2 children.
 - Used to make **binary search trees**.
   - A binary tree that uses comparable keys to assign which direction a child is.
   - Left child has a key smaller than its parent node.
   - Right child has a key greater than its parent node.
   - There can be no duplicate node.
   - Because of the above it is more likely to be used as a data structure than a binary tree.
+  - 
+#### Tree traversal
+- In order traversal: left subtree, root, and then right subtree.
+
+```c++
+  void inOrder(Node* root) {
+      inOrder(root->left);
+      cout << root->data << endl;
+      inOrder(root->right);
+  }
+```
+
+- Pre order traversal: root, left subtree, and then right subtree
+
+Using an explicit stack:
+- worst case space complexity: height of tree
+
+```c++
+  void prePrint(Node* root) {
+      stack<Node*> s;
+      s.push(root);
+      
+      while (!s.empty()) {
+        Node* next = s.pop();
+        if(next != nullptr) {
+            cout << next->data << endl;
+            s.push(next->right);
+            s.push(next->left);
+        }
+      }
+  }
+```
+- Post order traversal: left subtree, right subtree, and then root
+- Level order traversal:
+Using a queue:
+- wost case space complexity: width of tree
+```c++
+   void levelOrder(Node* root) {
+      queue<Node*> q;
+      q.enqueue(root);
+      
+      while(!q.empty()) {
+          Node* next = q.dequeue();
+          if(next != nullptr) {
+              cout << next->data << endl;
+              q.enqueue(next->left);
+              q.enqueue(next->right);
+          }
+      }
+   }
+```
+
 
 #### Time Complexity
 - Indexing:  Binary Search Tree: `O(log n)`
