@@ -18,7 +18,6 @@
         - [Selection Sort](#selection-sort)
         - [Insertion Sort](#insertion-sort)
         - [Merge Sort](#merge-sort)
-        - [Quick Sort](#quick-sort)
   - [Search Algorithms](#search-algorithms)
     - [Breadth First Search](#breadth-first-search)
     - [Depth First Search](#depth-first-search)
@@ -184,7 +183,7 @@ void putInPlace(vector<int> & arr, int i) {
 - Best Case: `O(n)`
 
 #### Space Complexity
-- Worst Case: `O(1)`
+- Worst Case: `O(1)` with a linked list
 
 #### Visualization
 ![#](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Merge_sort_algorithm_diagram.svg/400px-Merge_sort_algorithm_diagram.svg.png)
