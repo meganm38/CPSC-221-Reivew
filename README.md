@@ -586,6 +586,47 @@ class Queue {
 - balance(x) = height(x->left) - height(x->right);
 - For all nodes ``-1 <= balance <= 1.
 
+### <a id="btree"></a> B-tree
+#### Definition
+- m-ary search tree
+  - Each node has ≤ m children
+  - Disk I/O's runtime for find if a node is one page: ``O(h)``
+- B-Trees of order m are specialized m-ary search trees:
+  - ALL leaves are at the same depth!
+  - All nodes hold between ceil(m/2) -1 and m-1 keys (root may have between 0 and m-1 keys)
+  - So internal nodes have between ceil(m/2) and m children (except root)
+- Height is ``O(logm/2 n)``
+- Insert, remove, and find visit O(logm/2 n) nodes
+- m is chosen so that each (full) node fills one page of memory. Each node visit (disk I/O) retrieves between m/2 and m keys.
+
+#### Insertion Algorithm
+```
+- Insert key1 in its appropriate leaf node X.
+- While X has m keys: // overflow
+- Split X into two nodes:
+  - Original holds the ceil(m/2) smallest keys
+  - New holds the floor(m/2) – 1 largest keys
+  - Move the middle key up to parent and attach new child.
+  - If X is root, create new root and attach both children. Stop.
+  - X = parent of X.
+```
+#### Remove Algorithm
+```
+- Find node containing key to remove.
+- If node is internal, swap key with predecessor (or successor)
+- Remove key which is now at leaf called X.
+- While node X has max{0, ceil(m/2) – 2} keys, // underflow
+  - If a sibling has a spare key: move it up (smallest from right
+  - sibling or largest from left sibling); take down parent’s
+  separator key; stop.
+  - Merge with a sibling and take down parent’s separator
+  key
+  - If X is root
+  - If root has 0 keys and one child: remove root; make
+  child the new root; stop.
+  - X = parent of X.
+```
+
 ### <a id="hash"></a> Hash Table or Hash Map
 #### Definition
 - Stores data with key value pairs.
