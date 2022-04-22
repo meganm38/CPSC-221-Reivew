@@ -522,7 +522,7 @@ class Queue {
 - Pre order traversal: root, left subtree, and then right subtree
 
 Using an explicit stack:
-- worst case space complexity: height of tree
+  - worst case space complexity: height of tree
 
 ```c++
   void prePrint(Node* root) {
@@ -542,7 +542,7 @@ Using an explicit stack:
 - Post order traversal: left subtree, right subtree, and then root
 - Level order traversal:
 Using a queue:
-- wost case space complexity: width of tree
+  - wost case space complexity: width of tree
 ```c++
    void levelOrder(Node* root) {
       queue<Node*> q;
