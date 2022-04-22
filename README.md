@@ -619,14 +619,10 @@ class Queue {
 - If node is internal, swap key with predecessor (or successor)
 - Remove key which is now at leaf called X.
 - While node X has max{0, ceil(m/2) – 2} keys, // underflow
-  - If a sibling has a spare key: move it up (smallest from right
-  - sibling or largest from left sibling); take down parent’s
-  separator key; stop.
-  - Merge with a sibling and take down parent’s separator
-  key
+  - If a sibling has a spare key: move it up (smallest from right sibling or largest from left sibling); take down parent’s separator key; stop.
+  - Merge with a sibling and take down parent’s separator key
   - If X is root
-  - If root has 0 keys and one child: remove root; make
-  child the new root; stop.
+    - If root has 0 keys and one child: remove root; make child the new root; stop.
   - X = parent of X.
 ```
 
