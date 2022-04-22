@@ -464,50 +464,11 @@ class Queue {
    }
 ```
 
-### <a id="hash"></a> Hash Table or Hash Map
-#### Definition
-- Stores data with key value pairs.
-- **Hash functions** accept a key and return an output unique only to that specific key.
-  - This is known as **hashing**, which is the concept that an input and an output have a one-to-one correspondence to map information.
-  - Hash functions return a unique address in memory for that data.
-
-#### What you need to know
-- Designed to optimize searching, insertion, and deletion.
-- **Hash collisions** are when a hash function returns the same output for two distinct inputs.
-  - All hash functions have this problem.
-  - This is often accommodated for by having the hash tables be very large.
-- Hashes are important for associative arrays and database indexing.
-
-#### Time Complexity
-- Indexing:         Hash Tables: `O(1)`
-- Search:           Hash Tables: `O(1)`
-- Insertion:        Hash Tables: `O(1)`
-
-
 ### <a id="binary-tree"></a> Binary Tree
 #### Definition
 - Is a tree like data structure where every node has at most two children.
   - There is one left and right child node.
 
-#### What you need to know
-- The height of a node is the length of the longest path from v to a leaf. Count the number of edges from v to the furthest leaf from v. The height of an empty tree is ``-1``, the height of a one-node tree is 0.
-- The depth of a node v is the length of the path from v to the root.
-- A binary tree is perfect is
-  - No node has only one child.
-  - All leaves have the same depth.
-- A perfect binary tree of height h has ``2^h+1 - 1`` nodes, of which ``2^h`` are leaves.
-- A binary tree is complete if
-  - The leaves are on at most two different levels,
-  - The second to bottom level is completed filled in and
-  - The leaves on the bottom level are as faa to the left as possible. 
-- A binary tree is full if all nodes have 0 or 2 children.
-- Used to make **binary search trees**.
-  - A binary tree that uses comparable keys to assign which direction a child is.
-  - Left child has a key smaller than its parent node.
-  - Right child has a key greater than its parent node.
-  - There can be no duplicate node.
-  - Because of the above it is more likely to be used as a data structure than a binary tree.
-  - 
 #### Tree traversal
 - In order traversal: left subtree, root, and then right subtree.
 
@@ -521,7 +482,7 @@ class Queue {
 
 - Pre order traversal: root, left subtree, and then right subtree
 
-Using an explicit stack:
+  Using an explicit stack:
   - worst case space complexity: height of tree
 
 ```c++
@@ -541,7 +502,8 @@ Using an explicit stack:
 ```
 - Post order traversal: left subtree, right subtree, and then root
 - Level order traversal:
-Using a queue:
+
+  Using a queue:
   - wost case space complexity: width of tree
 ```c++
    void levelOrder(Node* root) {
@@ -559,11 +521,89 @@ Using a queue:
    }
 ```
 
+#### What you need to know
+- The height of a node is the length of the longest path from v to a leaf. Count the number of edges from v to the furthest leaf from v. The height of an empty tree is ``-1``, the height of a one-node tree is 0.
+- The depth of a node v is the length of the path from v to the root.
+- A binary tree is perfect is
+  - No node has only one child.
+  - All leaves have the same depth.
+- A perfect binary tree of height h has ``2^h+1 - 1`` nodes, of which ``2^h`` are leaves.
+- A binary tree is complete if
+  - The leaves are on at most two different levels,
+  - The second to bottom level is completed filled in and
+  - The leaves on the bottom level are as faa to the left as possible. 
+- A binary tree is full if all nodes have 0 or 2 children.
+- Used to make **binary search trees**.
+  - A binary tree that uses comparable keys to assign which direction a child is.
+  - Left child has a key smaller than its parent node.
+  - Right child has a key greater than its parent node.
+  - There can be no duplicate node.
+  - Average depth is ``O(lg(n))``, so average running time is ``O(lg(n))``.
+  - Used to build dictionary abstract data type.
+  ```c++
+      Dictionary<K,D>::Node* & rFind(Node*& r, K k) {
+          if (r == nullptr) return r;
+          if (r->key == k) return r;
+          if (k < r->key) return rFind(r->left, k);
+          return rFind(r->right, k);
+      }
+  ```
+  
+  ```c++
+      void remove(Node* & r, K key) {
+          Node* handle = rFind(r, key);
+          if (handle == nullptr) return;
+          Node* toDelete = handle;
+          if (handle->left == nullptr) {
+              handle = handle->right;
+          } else if (handle->right == nullptr) {
+              handle = handle->left;
+          } else {
+              Node* min = findMin(handle->right);
+              Node* newSubroot = min;
+              min = min->right;
+              newSubroot->left = handle->left;
+              newSubroot->right = handle->right;
+              handle = newSubroot;
+          }
+          delete toDelete;
+      }
+      
+      Node* & findMin(Node* & root) { 
+          if(root->left == nullptr) return root;
+          findMin(root->left);
+      }
+  ```
 
 #### Time Complexity
 - Indexing:  Binary Search Tree: `O(log n)`
 - Search:    Binary Search Tree: `O(log n)`
 - Insertion: Binary Search Tree: `O(log n)`
+
+### <a id="avl"></a> AVL Tree
+#### Definition
+- Balanced BST
+- balance(x) = height(x->left) - height(x->right);
+- For all nodes ``-1 <= balance <= 1.
+
+### <a id="hash"></a> Hash Table or Hash Map
+#### Definition
+- Stores data with key value pairs.
+- **Hash functions** accept a key and return an output unique only to that specific key.
+  - This is known as **hashing**, which is the concept that an input and an output have a one-to-one correspondence to map information.
+  - Hash functions return a unique address in memory for that data.
+
+#### What you need to know
+- Designed to optimize searching, insertion, and deletion.
+- **Hash collisions** are when a hash function returns the same output for two distinct inputs.
+  - All hash functions have this problem.
+  - This is often accommodated for by having the hash tables be very large.
+- Hashes are important for associative arrays and database indexing.
+
+#### Time Complexity
+- Indexing:         Hash Tables: `O(1)`
+- Search:           Hash Tables: `O(1)`
+- Insertion:        Hash Tables: `O(1)`
 
 
 # <a id="algorithms"></a> Algorithms
@@ -624,3 +664,16 @@ Using a queue:
 ``&`` means: reference type
 ``* operator`` means: dereference
 ``& operator`` means: address-of
+
+#### Value vs. Reference types
+- Value parameters (Object foo)
+  - copies parameter
+  - no (direct) side effects
+- Reference parameters (Object & foo)
+  - shares parameter
+  - can affect passed variable
+  - use when the variable needs to be (directly) assigned
+- Const reference parameters (Object const & foo)
+  - shares parameter
+  - cannot affect passed variable
+  - use when the value is too big for copying in pass-by-value
