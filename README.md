@@ -540,7 +540,7 @@ class Queue {
   - Left child has a key smaller than its parent node.
   - Right child has a key greater than its parent node.
   - There can be no duplicate node.
-  - Average depth is ``O(lg(n))``, so average running time is ``O(lg(n))``.
+  - Average depth is ``O(lg(n))``, so average running time is ``O(lg(n))``. Worst case could be ``O(n)``!
   - Used to build dictionary abstract data type.
   ```c++
       Dictionary<K,D>::Node* & rFind(Node*& r, K k) {
@@ -586,7 +586,7 @@ class Queue {
 #### Definition
 - Balanced BST
 - balance(x) = height(x->left) - height(x->right);
-- For all nodes ``-1 <= balance <= 1.
+- For all nodes ``-1 <= balance <= 1``.
 
 ### <a id="btree"></a> B-tree
 #### Definition
