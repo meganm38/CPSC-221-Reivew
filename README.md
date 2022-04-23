@@ -25,6 +25,8 @@
   - [Minimum Spanning Tree Algorithms](#minimum-spanning)
     - [Kruskal's Algorithm](#kruskal)
     - [Prim's Algorithm](#prim)
+  - [Shortest Path Algorithm](#shortest-path)
+    - [Dijkstra's Algorithm](#dijkstra)
 - [C++ Review](#c++review)
 
 # <a id="asymptotic-analysis"></a>Asymptotic Analysis
@@ -841,6 +843,7 @@ KruskalsAlgorithm() {
 ```
 #### Implementation
 For finding minimum weight edges, use min heap or sorted array. Start by initializing all edges with their weights.
+
 For checking cycles and performing unions, use disjoint cycels. Start by initializing all vertices as disconnected. Mark them as connected as they
 edges are removed from priority queue.
 ![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2011.30.16%20AM.png?raw=true)
@@ -856,14 +859,35 @@ edges are removed from priority queue.
 PrimsAlgorithm() {
     mark v as visited, add v to spanning tree
     while (graph has unvisited vertices) {
-        Find least cost edge (w, u) from a visited vertex w to unvisited vertex u
+        Find least cost edge (w, u) from a visited vertex w to unvisited vertex u, remove from priority queue
         Mark u as visited
         Add vertex u and edge (w, u) to the minimum spanning tree
     }
 }
 ```
 #### Implementation
+``O(mlog)n))``
 ![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2011.37.32%20AM.png?raw=true)
+
+
+## <a id="shortest-path"></a>Shortest Path Algorithms
+### <a id="dijkstra"></a>Dijkstra's algorithm
+#### Definition
+- Given a graph G = (V, E) and a vertex V, find the shortest path from s to every vertex in V.
+- Weighted, cyclic, positive weights only
+
+#### Pseudocode
+```
+- Initialize the cost of the source to 0
+- Initialize the cost of all other nodes to infinity; add to PQueue
+- While there are (unknown) nodes in the Priority Queue
+  - Remove the one n with the lowest cost
+  - For each node a adjacent to n
+    - a’s cost = min(a’s old cost, n’s cost + cost of (n, a))
+```
+#### Implementation
+``O((m+n)lg(n))``
+![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2012.00.58%20PM.png?raw=true)
 
 
 ### <a id="c++review"></a> C++ Review
