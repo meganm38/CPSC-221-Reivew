@@ -881,9 +881,9 @@ PrimsAlgorithm() {
 - Initialize the cost of the source to 0
 - Initialize the cost of all other nodes to infinity; add to PQueue
 - While there are (unknown) nodes in the Priority Queue
-  - Remove the one n with the lowest cost
+  - Remove the one n with the lowest cost, mark known
   - For each node a adjacent to n
-    - a’s cost = min(a’s old cost, n’s cost + cost of (n, a))
+    - a’s cost = min(a’s old cost, n’s cost + cost of (n, a)) //O(lgn) binary heap + dict -> decrease key
 ```
 #### Implementation
 ``O((m+n)lg(n))``
