@@ -866,7 +866,7 @@ PrimsAlgorithm() {
 }
 ```
 #### Implementation
-``O(mlog)n))``
+``O(mlogn)``
 ![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2011.37.32%20AM.png?raw=true)
 
 
