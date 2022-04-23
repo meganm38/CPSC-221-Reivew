@@ -22,7 +22,7 @@
   - [Search Algorithms](#search-algorithms)
     - [Breadth First Search](#breadth-first-search)
     - [Depth First Search](#depth-first-search)
-  - [Minimum Spanning Tree Algorithms](#minimum_spanning)
+  - [Minimum Spanning Tree Algorithms](#minimum-spanning)
     - [Kruskal's Algorithm](#kruskal)
     - [Prim's Algorithm](#prim)
 - [C++ Review](#c++review)
@@ -863,7 +863,7 @@ PrimsAlgorithm() {
 }
 ```
 #### Implementation
-![#](![image](https://user-images.githubusercontent.com/64246256/164937392-1c91b21c-5003-4f8f-8408-6fbca7f93dc4.png))
+![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2011.37.32%20AM.png?raw=true)
 
 
 ### <a id="c++review"></a> C++ Review
