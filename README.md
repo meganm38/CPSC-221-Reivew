@@ -22,6 +22,9 @@
   - [Search Algorithms](#search-algorithms)
     - [Breadth First Search](#breadth-first-search)
     - [Depth First Search](#depth-first-search)
+  - [Minimum Spanning Tree Algorithms](#minimum_spanning)
+    - [Kruskal's Algorithm](#kruskal)
+    - [Prim's Algorithm](#prim)
 - [C++ Review](#c++review)
 
 # <a id="asymptotic-analysis"></a>Asymptotic Analysis
@@ -717,7 +720,7 @@ Min heap
 - ``O(n)``
 
 
-### <a id="graph"></a> graph
+### <a id="graph"></a> Graph
 #### Definition
 - Degree(v): number of edges that touch vertex v.
 - Walk: Sequence of vertices between which there are edges
@@ -795,6 +798,73 @@ Min heap
   - If using a DFS on a tree that is very deep you might go unnecessarily deep in the search. See [xkcd](http://xkcd.com/761/) for more information.
   - Breadth First Search tends to be a looping algorithm.
   - Depth First Search tends to be a recursive algorithm.
+
+
+### <a id="toposort"></a>Topological Sort
+#### Definition
+Given a graph, G = (V, E), output all the vertices in V such that no vertex is output before any other vertex with an edge to it.
+
+#### Pseudocode
+```
+- Label each vertex’s in-degree
+- Initialize a queue to contain all in-degree zero vertices
+- While there are vertices remaining in the queue
+  - Dequeue a vertex v (with in-degree zero) and output it
+  - Reduce the in-degree of all vertices adjacent to v
+  - Put any of these with new in-degree zero on the queue
+```
+
+```
+- Make a graph G’ equal to G but with edges reversed.
+- Find a vertex v of degree zero.
+- Run DFS(G, v) and output the vertex
+https://www.geeksforgeeks.org/topological-sorting/
+```
+#### Runtime
+``O(V+E)``
+
+## <a id="minimum-spanning"></a>Minimum Spanning Tree Algorithms
+### <a id="kruskal"></a>Kruskal's algorithm
+#### Definition
+- Builds a spanning tree from several connected components
+- Repeatedly chooses the minimum weight joining two connected components, which does not form a cycle, until edge set has 𝑉−1 edges
+
+#### Pseudocode
+```
+KruskalsAlgorithm() {
+    set E' = empty;
+    while (|E'| != |V| - 1) {
+        Find minimum weight edge e that doesn't already belong to E' such that E' doesn't contain cycles
+        Add e to E', mark the two vertices as connected.
+    }
+}
+```
+#### Implementation
+For finding minimum weight edges, use min heap or sorted array. Start by initializing all edges with their weights.
+For checking cycles and performing unions, use disjoint cycels. Start by initializing all vertices as disconnected. Mark them as connected as they
+edges are removed from priority queue.
+![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2011.30.16%20AM.png?raw=true)
+
+### <a id="prim"></a>Prim's algorithm
+#### Definition
+- Based on Partition Property in graphs
+- Builds a minimum spanning tree from initially one vertex.
+- Repeatedly chooses the minimum weight edge from a vertex in the tree, to a vertex outside the tree adds that vertex to the tree
+
+#### Pseudocode
+```
+PrimsAlgorithm() {
+    mark v as visited, add v to spanning tree
+    while (graph has unvisited vertices) {
+        Find least cost edge (w, u) from a visited vertex w to unvisited vertex u
+        Mark u as visited
+        Add vertex u and edge (w, u) to the minimum spanning tree
+    }
+}
+```
+#### Implementation
+![#](![image](https://user-images.githubusercontent.com/64246256/164937392-1c91b21c-5003-4f8f-8408-6fbca7f93dc4.png))
+
 
 ### <a id="c++review"></a> C++ Review
 #### Pointers
