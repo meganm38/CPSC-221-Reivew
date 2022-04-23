@@ -641,13 +641,48 @@ N(1) = 2
 - **Hash functions** accept a key and return an output unique only to that specific key.
   - This is known as **hashing**, which is the concept that an input and an output have a one-to-one correspondence to map information.
   - Hash functions return a unique address in memory for that data.
+- A simple and (usually) effective hash function is
+  – Convert the key value to an integer, h(x) = x mod tablesize, where tablesize is the first prime number larger than twice the size of the number of expected values
 
-#### What you need to know
-- Designed to optimize searching, insertion, and deletion.
-- **Hash collisions** are when a hash function returns the same output for two distinct inputs.
+#### Hash collisions
+
+Hash collisions are when a hash function returns the same output for two distinct inputs.
   - All hash functions have this problem.
   - This is often accommodated for by having the hash tables be very large.
-- Hashes are important for associative arrays and database indexing.
+  - two ways to deal with collisions
+    - Open addressing
+    - separate chaining
+
+**Open addressing**
+
+when an insertion results in a collision look for an empty array element
+– Start at the index to which the hash function mapped the inserted item
+– Look for a free space in the array following a particular search pattern, known as probing
+  - Linear probing
+    - Starting with the original hash location
+    – For each time the table is probed (for a free location) add one to the index
+    - Search h search key ) + 1, then h search key ) + 2, and so on until an avaialbe location is found
+    - If the sequence of probes reaches the last element of the array, wrap around to arr[0]
+  - Double hashing
+    - Double hashing produces key dependent probe sequences.
+    - A second hash function, h2, determines the probe sequence.
+    - A typical h2 = p - (key mod p), where p is a prime number.
+
+- Linear probing leads to primary clustering. table contains groups of consecutively occupied locations. These clusters tend to 
+get larger as time goes on, reduce efficiency of hash table.
+- Searching must use the same probe method as insertion. Terminates when item found, empty space, or entire table searched.
+- Load factor: ``number of items/ table size``, as table fills, factor increases, and the chance of a collision occurring also increases. 
+Performance decreases as load factor increases. The table size should be selected so that load factor doesn't exceed 1/2.
+- Removals: mark a table location as either empty, occupied, or removed. After many removals, the table may be clogged with tombstones
+which must still be scanned as part of a cluster, so it's beneficial to perdiocally rehash all valid items.
+
+***Separate chaining***
+- Each entry in the hash table is a pointer to a linked list.
+- With uniform random distribution, separate chaining maintains good performance even at high load factors.
+
+***Comparsion***
+- If load factor is less than 1/2, open addressing and separate chaining give similar perforamce. As load factor increases, separate chaining performs better.
+- Separate chaining increases storage overhead for linked list pointers.
 
 #### Time Complexity
 - Indexing:         Hash Tables: `O(1)`
