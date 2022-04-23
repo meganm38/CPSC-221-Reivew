@@ -12,7 +12,7 @@
   - [AVL Tree](#avl)
   - [B-Tree](#btree)
   - [Hash Table or Hash Map](#hash)
-
+  - [Heap](#heap)
 - [Algorithms](#algorithms)
     - [Sorting Algorithms](#sorting-algorithms)
         - [Selection Sort](#selection-sort)
@@ -676,11 +676,11 @@ Performance decreases as load factor increases. The table size should be selecte
 - Removals: mark a table location as either empty, occupied, or removed. After many removals, the table may be clogged with tombstones
 which must still be scanned as part of a cluster, so it's beneficial to perdiocally rehash all valid items.
 
-***Separate chaining***
+**Separate chaining**
 - Each entry in the hash table is a pointer to a linked list.
 - With uniform random distribution, separate chaining maintains good performance even at high load factors.
 
-***Comparsion***
+**Comparsion**
 - If load factor is less than 1/2, open addressing and separate chaining give similar perforamce. As load factor increases, separate chaining performs better.
 - Separate chaining increases storage overhead for linked list pointers.
 
@@ -689,6 +689,31 @@ which must still be scanned as part of a cluster, so it's beneficial to perdioca
 - Search:           Hash Tables: `O(1)`
 - Insertion:        Hash Tables: `O(1)`
 
+
+
+### <a id="heap"></a> Heap
+#### Definition
+Min heap
+- Parent's key less than or equal to children's keys, so minimum is alwasy at the top
+- Complete tree, depth always ``O(lg(n))``, next open location always known.
+- Array locations:
+  - left child: ``2i + 1``
+  - right child: ``2i + 2``
+  - parent: ``floor((i-1)/2)``
+  - root: 0
+  - next free: size
+
+#### DeleteMin
+- Swap arr[0] with last item
+- Heapify down arry[0]: compare with the samller child key
+
+#### Insert
+- Heapify up: compare with parent key
+
+#### BuildHeap
+- start from parent of (size - 1) down to arr[0[
+- heapifyDown
+- ``O(n)``
 
 # <a id="algorithms"></a> Algorithms
 ## <a id="search-algorithms"></a>Search Algorithms
