@@ -588,6 +588,12 @@ class Queue {
 - balance(x) = height(x->left) - height(x->right);
 - For all nodes ``-1 <= balance <= 1``.
 
+#### Height
+Let N(h) represent the minimum number of nodes in an AVL tree of height h
+N(h) = N(h-1) + N(h-2) + 1
+N(0) = 1
+N(1) = 2
+
 ### <a id="btree"></a> B-tree
 #### Definition
 - m-ary search tree
