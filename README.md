@@ -13,6 +13,7 @@
   - [B-Tree](#btree)
   - [Hash Table or Hash Map](#hash)
   - [Heap](#heap)
+  - [Graph](#graph)
 - [Algorithms](#algorithms)
     - [Sorting Algorithms](#sorting-algorithms)
         - [Selection Sort](#selection-sort)
@@ -714,6 +715,34 @@ Min heap
 - start from parent of (size - 1) down to arr[0[
 - heapifyDown
 - ``O(n)``
+
+
+### <a id="graph"></a> graph
+#### Definition
+- Degree(v): number of edges that touch vertex v.
+- Walk: Sequence of vertices between which there are edges
+- Path(alt): Walk with no repeated vertices
+- Cycle: Path that begins and ends in same place
+- Simple graph: No self loops or multi edges
+- Handshaking theorem: for undirected graphs, deg(v) = 2E
+- Complete graph: Maximum number of edges. Every vertice has an edge to every other vertice. 
+  -``E = v(v-1)/2``
+- Connected graph: Path between every pair of vertices
+- Connected component: maximal connected subgraph
+- A cyclic graph: no cycles
+- Spanning tree: connected, acyclic subgraph, containing all the vertices in V.
+- A sparse graph has ``O(V)`` edges, a dense graph has ``O(V^2)`` edges.
+
+#### Number of edges for n vertices
+- Connected graph: at least ``n-1`` edges
+- Unconnected graph: minimum 0 edges
+- Complete graph (simple): ``n(n-1)/2``` edges
+- not simple: unlimited
+
+#### Performance
+![#](https://github.com/meganm38/UBC-CPSC-221-Reivew/blob/master/Screen%20Shot%202022-04-23%20at%2012.05.54%20AM.png?raw=true)
+
+
 
 # <a id="algorithms"></a> Algorithms
 ## <a id="search-algorithms"></a>Search Algorithms
